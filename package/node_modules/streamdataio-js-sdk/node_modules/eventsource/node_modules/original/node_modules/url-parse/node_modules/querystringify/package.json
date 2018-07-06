@@ -1,0 +1,83 @@
+{
+  "name": "querystringify",
+  "version": "2.0.0",
+  "description": "Querystringify - Small, simple but powerful query string parser.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js",
+    "watch": "mocha --watch test.js",
+    "coverage": "istanbul cover _mocha -- test.js",
+    "test-travis": "istanbul cover _mocha --report lcovonly -- test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unshiftio/querystringify.git"
+  },
+  "keywords": [
+    "query",
+    "string",
+    "query-string",
+    "querystring",
+    "qs",
+    "stringify",
+    "parse",
+    "decode",
+    "encode"
+  ],
+  "author": {
+    "name": "Arnout Kazemier"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unshiftio/querystringify/issues"
+  },
+  "homepage": "https://github.com/unshiftio/querystringify",
+  "devDependencies": {
+    "assume": "^2.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.1.1",
+    "pre-commit": "^1.2.2"
+  },
+  "gitHead": "020c30fe7691bed7889e6fc7a75b1879c2c58c21",
+  "_id": "querystringify@2.0.0",
+  "_npmVersion": "5.6.0",
+  "_nodeVersion": "8.9.1",
+  "_npmUser": {
+    "name": "3rdeden",
+    "email": "npm@3rd-Eden.com"
+  },
+  "dist": {
+    "integrity": "sha512-eTPo5t/4bgaMNZxyjWx6N2a6AuE0mq51KWvpc7nU/MAqixcI6v6KrGUKES0HaomdnolQBBXU/++X6/QQ9KL4tw==",
+    "shasum": "fa3ed6e68eb15159457c89b37bc6472833195755",
+    "tarball": "https://registry.npmjs.org/querystringify/-/querystringify-2.0.0.tgz",
+    "fileCount": 4,
+    "unpackedSize": 6242,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJa2JsvCRA9TVsSAnZWagAAbWUP/2FulN+mJeZmHU05T3Ft\nZ+SbWrdlEeyG/Clo6PNbOFiMU/hPt6m1AlST5hhVxHr2FPzoyWSWGyKj5WE6\nXNdA5vkKnT1W2ColgNmfcoSPwoLwklhHnTF1qLid2QoYwGTKiE90xUz3pGws\nJs77blGaDy4NjI55JmPTxpMczNaBnKNHFHYZKoHoPEk6N1eo8RKhvLMQftyo\nrfnqy0ytwNthYkoaap5AT1nxuOv/z3aU8lWIpTliMv4+HmoRUYqBzhdJs0pF\ntabvKqmJ9zUDG2gh5ikOwcKpjML0iIZHQd1duCn+Yeo/0clYnYnzkVFRFWEj\n8k7g2r9BE383PpuBMjJTkxyljQUCbLaUox3GgJMYuQ/KeJJWayWCyAPK5hri\naqGnUVoUiUY+36abKCQ0Mtk29C1egOqvno0Mda82lm9KvZY3A0HojvAuM5Fa\n2Vh+BsmkHeEwaAXwiPYfsVeCWaew1IgvDCswpFcQcMXGTgOBf5bMb++zIfqF\n2VvbiU7YcNz8o/4ryHjVwTnU2lOI+LVkwTxd8FVgSLELqYrAxBKCwIcClfW8\nK4tOZ+yxGZLJ6F3eZ93TKjersLXudzQ91/NMslKEVePuqWwdklT+io/2OZb3\n7X8zCFX1D83lN767OYYIbQVb8GZiV/6Bkrscg8EuP7ETDi3yLM590L6i4Uw5\nLlsh\r\n=gKJD\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "maintainers": [
+    {
+      "email": "npm@3rd-Eden.com",
+      "name": "3rdeden"
+    },
+    {
+      "email": "luigipinca@gmail.com",
+      "name": "lpinca"
+    },
+    {
+      "email": "npm@unshift.io",
+      "name": "unshift"
+    },
+    {
+      "email": "npm@3rd-Eden.com",
+      "name": "v1"
+    }
+  ],
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/querystringify_2.0.0_1524144942625_0.30547538180576495"
+  },
+  "_shasum": "fa3ed6e68eb15159457c89b37bc6472833195755",
+  "_resolved": "https://registry.npmjs.org/querystringify/-/querystringify-2.0.0.tgz",
+  "_from": "querystringify@>=2.0.0 <3.0.0"
+}

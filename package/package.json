@@ -1,0 +1,12 @@
+{
+  "name": "Streamdata.io Basic Demo - Stockmarket Prices",
+  "version": "1.0.0",
+  "description": "This is a basic demo of delivering a Server-Sent Events (SSE) stream of stock market prices using Streamdata.io.",
+  "main": "index.js",
+  "dependencies": {
+    "fast-json-patch": "*",
+    "node-print": "*",
+    "streamdataio-js-sdk": "*",
+    "streamdataio-js-sdk-auth": "*"
+  }
+}
