@@ -1,23 +1,46 @@
 exports.handler = (event, context, callback) => {
     
-    // add EventSource dependency
+    // Streamdata Dependencies
     var streamdataio = require('streamdataio-js-sdk/dist/bundles/streamdataio-node');
     var AuthStrategy = require('streamdataio-js-sdk-auth');
-    // add json patch dependency
+    
+    // All The Other Dependencies
     var jsonPatch = require('fast-json-patch');
     var print = require('node-print');
+    var AWS = require('aws-sdk');
+    var dateTime = require('node-datetime');
+    
+    // Function for writing to S3
+    function putObjectToS3(s3bucket, s3key, data){
+    var s3 = new AWS.S3();
+        var params = {
+            Bucket : s3bucket,
+            Key : s3key,
+            Body : data
+        }
+        s3.putObject(params, function(err, data) {
+          if (err) console.log(err, err.stack); // an error occurred
+          else     console.log(data);           // successful response
+        });
+        }
     
     function server()
     {
       // targetUrl is the JSON API you wish to stream
-      // you can use this example API which simulates updating stocks prices from a financial market
-      var targetUrl = 'http://stockmarket.streamdata.io/v2/prices';
+      var targetUrl = process.env.targetUrl;
+      
+      // s3bucket i sthe bucket you wish write data into
+      var s3bucket = process.env.s3bucket;
+      
+      // targetFolder is the folder you wish to write data into
+      var targetFolder = process.env.targetFolder;
+      
+      // appToken is the Streamdata.io token
+      var appToken = process.env.appToken;
+      
+      var privateKey = '';
     
-      // appToken is the way Streamdata.io authenticates you as a valid user.
-      // you MUST provide a valid token for your request to go through.
-      var appToken = '[Your Streamdata.io Key]';
-    
-      eventSource = streamdataio.createEventSource(targetUrl, appToken, [], AuthStrategy.newSignatureStrategy(appToken, privateKey));
+      var eventSource = streamdataio.createEventSource(targetUrl, appToken, [], AuthStrategy.newSignatureStrategy(appToken, privateKey));
       var result = [];
     
       eventSource
@@ -32,8 +55,20 @@ exports.handler = (event, context, callback) => {
         {
           console.log("data received");
           // memorize the fresh data set
+          
           result = data;
-          print.printTable(result);
+          console.log(result);
+          
+          //putObjectToS3(s3bucket, s3key, result);
+          
+          // write file name with time stamp
+          var dt = dateTime.create();
+          var formatted = dt.format('Y-m-d-H-M-S');
+          var file = targetFolder + formatted + '.json';
+          
+          // put the entire result to S3
+          putObjectToS3(s3bucket, file, JSON.stringify(result));
+          
         })
         // the streamdata.io specific 'patch' event will be called when a fresh Json patch
         // is pushed by streamdata.io from the API. This patch has to be applied to the
@@ -42,10 +77,17 @@ exports.handler = (event, context, callback) => {
         {
           // display the patch
           console.log("patch: ", patch);
+          
           // apply the patch to data using json patch API
           jsonPatch.applyPatch(result, patch);
-          // do whatever you wish with the update data
-          print.printTable(result);
+          
+          // write file name with time stamp
+          var dt = dateTime.create();
+          var formatted = dt.format('Y-m-d-H-M-S');
+          var file = targetFolder + formatted + '.json';
+       
+          // put the entire result to S3
+          putObjectToS3(s3bucket, file, JSON.stringify(result));
     
         })
     
