@@ -1,0 +1,24 @@
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: This is a demo of a streaming stock market prices using Streamdata.io, meant to take any existing JSON API, and turn it into a streaming API using Server-Sent Events, applying incremental updates using JSON Patch.
+Resources:
+  streamdataiostockmarketdata:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: s3://streamdata-serverless/streamdata-io-stock-market-data.zip
+      Description: This is a demo of a streaming stock market prices using Streamdata.io, meant to take any existing JSON API, and turn it into a streaming API using Server-Sent Events, applying incremental updates using JSON Patch.
+      MemorySize: 128
+      Timeout: 300
+      Policies:
+        - LambdaInvokePolicy:
+            FunctionName: streamdata-io-stock-market-data
+        - S3CrudPolicy:
+            BucketName: streaming-data-lake
+      Environment:
+        Variables:
+          appToken: Streamdata-API-Key
+          s3bucket: streaming-data-lake
+          targetUrl: 'http://stockmarket.streamdata.io/v2/prices'
+          targetFolder: stock-market-data/
